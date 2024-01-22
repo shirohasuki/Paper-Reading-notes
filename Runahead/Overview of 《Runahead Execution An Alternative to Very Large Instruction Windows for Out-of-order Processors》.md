@@ -344,3 +344,7 @@ runahead cache是一个缓存，但它的目的不是缓存数据，而是提供
 4. 恢复分支历史 - 恢复保存的branch history register和return address stack的状态。（对应进入runahead时两者的存入）
 5. 失效Runahead Cache - 使所有Runahead Cache的行无效（STO=0，回归初始化状态）。
 6. 开始重取指令 - 从导致进入Runahead的指令地址开始,重取和重新执行指令。（对应进入runahead时保存的入口地址）
+
+#### 思考
+##### 如果将所有INV位初始置为1，是否可以不用STO位
+![img2](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Runahead/img/1.jpg)
