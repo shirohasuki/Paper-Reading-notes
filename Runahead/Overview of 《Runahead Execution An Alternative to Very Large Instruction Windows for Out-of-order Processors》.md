@@ -347,4 +347,4 @@ runahead cache是一个缓存，但它的目的不是缓存数据，而是提供
 
 #### 思考
 ##### 如果将所有INV位初始置为1，是否可以不用STO位
-![img2](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Runahead/img/1.jpg)
+![img2](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Runahead/img/1.jpg){:height="400px" width="100px"}
