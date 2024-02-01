@@ -16,7 +16,7 @@
 - 使用平方根整数计算算法计算LayerNorm
 - 使用 INT8 乘法和 INT32 累加来处理矩阵乘法 (MatMul)
 - 具体方案
-![I-BERT](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/I-BERT1.png)
+![I-BERT](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/I-BERT1.png)
 
 ### Related Work
 #### Efficient Neural Network的几种方式
@@ -120,11 +120,11 @@ $$
 
 - 其三，是用多项式近似的方法。文中使用这种方法。过程如下
 
-  ![ibert推导1.png (652×346) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导1.png)
+  ![ibert推导1.png (652×346) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导1.png)
 
   演示使用整型计算二次多项式$a(x + b)^2 + c$。
 
-  ![ibert手推1.png (1349×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推1.png)
+  ![ibert手推1.png (1349×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推1.png)
 
 #### 非线性函数多项式近似方法
 
@@ -190,11 +190,11 @@ $$
   $$
   i-GELU(x):=x⋅ \frac{1}{2}[1+L(\frac{x}{\sqrt{2}})]
   $$
-  ![ibert推导2.png (658×505) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导2.png)
+  ![ibert推导2.png (658×505) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导2.png)
 
 *S/根号二怎么不加取整？*
 
-![ibert手推2.png (1000×1124) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推2.png)
+![ibert手推2.png (1000×1124) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推2.png)
 
 #### Softmax
 
