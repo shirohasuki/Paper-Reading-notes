@@ -203,7 +203,7 @@ Softmax 函数规范化一个输入向量，然后转换成一个概率分布：
 $$
 Softmax (x)_i := \frac{exp(x_i)}{\sum^k_{j=1}\exp(x_j)}, x=[x_1,...,x_k]
 $$
-![softmax.jpg (994×785) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/softmax.jpg)
+![softmax.jpg (994×785) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/softmax.jpg)
 
 先前的研究要么浮点运算来处理这一层，要么查表法，要么使用的多项式阶数很高，而且只适用于有限的定义域。
 
@@ -229,9 +229,9 @@ i-exp(\tilde{x}) := L(p)>>z
 $$
 *So easy啊，朴实无华*
 
-![ibert推导3.png (512×438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导3.png)
+![ibert推导3.png (512×438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导3.png)
 
-![ibert手推3.png (1308×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推3.png)
+![ibert手推3.png (1308×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推3.png)
 
 #### LayerNorm
 
@@ -259,9 +259,9 @@ $$
 
 LayerNorm 中的其他非线性运算，如除法和平方运算，则直接用整数算法计算。
 
-![ibert推导4.png (528×290) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导4.png)
+![ibert推导4.png (528×290) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导4.png)
 
-![ibert手推4.png (1447×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推4.png)
+![ibert手推4.png (1447×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推4.png)
 
 
 
