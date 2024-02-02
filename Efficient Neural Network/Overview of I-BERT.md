@@ -5,7 +5,7 @@
 
 问题：现有Transformer based models如BERT and RoBERTa存在内存占用多、推理延迟高和功耗高的问题。之前的量化方法使用浮点的方式，不适合在很多硬件上运行。
 
-贡献：提出了一个I-BERT量化方案（INT8），用纯整数运算对整个推理进行量化
+贡献：提出了一个I-BERT量化方案（INT8和INT32混合精度），用纯整数运算对整个推理进行量化
 
 实验结果：比FP32快个2.4-4倍
 
@@ -169,7 +169,6 @@ h-GELU(x):=x\frac
 {ReLU6(1.702x+3)}{6}≈GELU(x)
 $$
 
-
   缺点：在 Transformer 中用 h-GELU 来替代 GELU 会导致结果有很大的精度丢失
 
 - 近似方法三（Ours）：使用i-GELU函数近似GELU（使用$L(x)= a(x + b)^2 + c$去近似$erf$函数，已知$ a(x + b)^2 + c$可以整型计算。
@@ -265,3 +264,28 @@ LayerNorm 中的其他非线性运算，如除法和平方运算，则直接用�
 
 
 *后面的实验就略了~*
+
+
+
+### 补充问题
+
+#### 用的到底是8bit量化还是32bit？
+
+I-BERT论文的方法章节,它使用了混合精度的量化方式:
+
+1. 对于矩阵乘法(MatMul)和词嵌入(Embedding)操作,使用8比特(INT8)的整数量化。
+2. 对于非线性操作如GELU、Softmax和LayerNorm,使用32比特(INT32)整数进行计算。
+
+具体来说,论文中提到:
+
+"We perform MatMul and Embedding with INT8 precision, and the non-linear operations with INT32 precision."
+
+**"我们使用INT8精度执行MatMul和Embedding,并使用INT32精度执行非线性运算。"**
+
+而在实验结果部分,也提到了使用INT8量化进行推理:
+
+"We deploy INT8 BERT models with the integer-only kernels for non-linear operations on a T4 GPU."
+
+"我们在T4 GPU上部署使用整数只内核的INT8 BERT模型进行非线性运算。"
+
+I-BERT论文中采用了8比特量化(INT8)来表示模型参数,并使用32比特(INT32)进行非线性运算的计算。这种混合精度量化方式既可以压缩模型大小,又可以保持非线性运算的计算精度。
