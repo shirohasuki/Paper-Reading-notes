@@ -13,7 +13,7 @@
 
 详细的贡献：
 
-- 提出一个新的kernel用于计算GELU和Softmax，使用轻量级二阶多项式来近似 GELU 和 Softmax
+- 使用轻量级二阶多项式来近似 GELU 和 Softmax
 - 使用平方根整数计算算法计算LayerNorm
 - 使用 INT8 乘法和 INT32 累加来处理矩阵乘法 (MatMul)
 - 具体方案
