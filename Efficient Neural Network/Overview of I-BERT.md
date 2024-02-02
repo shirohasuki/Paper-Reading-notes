@@ -169,7 +169,6 @@ h-GELU(x):=x\frac
 {ReLU6(1.702x+3)}{6}≈GELU(x)
 $$
 
-  *ReLU6是啥？*
 
   缺点：在 Transformer 中用 h-GELU 来替代 GELU 会导致结果有很大的精度丢失
 
