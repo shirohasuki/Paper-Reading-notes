@@ -1,3 +1,4 @@
+
 ## Overview of 《I-BERT: Integer-only BERT Quantization》
 
 ### 摘要
@@ -198,3 +199,70 @@ $$
 
 #### Softmax
 
+Softmax 函数规范化一个输入向量，然后转换成一个概率分布：
+$$
+Softmax (x)_i := \frac{exp(x_i)}{\sum^k_{j=1}\exp(x_j)}, x=[x_1,...,x_k]
+$$
+![softmax.jpg (994×785) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/softmax.jpg)
+
+先前的研究要么浮点运算来处理这一层，要么查表法，要么使用的多项式阶数很高，而且只适用于有限的定义域。
+
+首先每个$x_i$减去$x_{max}$，缩小所有指数值大小，$\tilde{x_j}=x_j-x_{max}$都变为非正数
+$$
+Softmax (x)_i = \frac{exp(x_i-x_{max})}{\sum^k_{j=1}\exp(x_j-x_{max})}, x=[x_1,...,x_k]
+$$
+已知可以将所有非正数表示为
+$$
+\tilde{x_j}=(-ln2)z+p
+$$
+则每个新的$\tilde{x_j}$可以表示为
+$$
+exp(\tilde{x_j})=2^{−z}exp(p)=exp(p)>>z,
+$$
+这个表达式就很硬件友好了，之后的工作就是去近似$exp(p)$，论文中结果如下：
+$$
+L(p) = 0.3585(p + 1.353)^2 + 0.344 ≈ exp(p)
+$$
+则
+$$
+i-exp(\tilde{x}) := L(p)>>z
+$$
+*So easy啊，朴实无华*
+
+![ibert推导3.png (512×438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导3.png)
+
+![ibert手推3.png (1308×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推3.png)
+
+#### LayerNorm
+
+BN是对batch的维度去做归一化，也就是针对不同样本的同一特征做操作。
+
+LN是对hidden的维度去做归一化，也就是针对单个样本的不同特征做操作。因此LN可以不受样本数的限制。
+
+BN就是在每个维度上统计所有样本的值，计算均值和方差；
+
+LN就是在每个样本上统计所有维度的值，计算均值和方差（指的简单的MLP情况，输入特征是（bsz，hidden_dim））。
+
+所以BN在每个维度上分布是稳定的，LN是每个样本的分布是稳定的。
+
+![BNvsLN.png (850×508) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/BNvsLN.png)
+
+LayerNorm:
+$$
+\tilde{x}= \frac{x−μ}{σ}\quad where \quad \mu =\frac{1}{C}\sum_{i=1}^{C}x_i\quad and \quad \sigma =\sqrt{\frac{1}{C}\sum_{i=1}^{C} (x_i − μ)^2}
+$$
+这里$\mu$和$\sigma$分别为输入的跨通道维度的平均值和标准差
+
+计算$\mu$很简单
+
+计算$\sigma$的平方根函数这里使用基于牛顿迭代法搜索$[\sqrt{n}]$的准确值，全整数运算。该算法在计算上是轻量级的，对于任何INT32输入，它最多可以在4次迭代中收敛，并且每次迭代只包含一个整数除法、一个整数加法和一个位移操作。*（but整数除法也很不友好啊，假设两个INT32，一轮跑32个周期）*
+
+LayerNorm 中的其他非线性运算，如除法和平方运算，则直接用整数算法计算。
+
+![ibert推导4.png (528×290) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert推导4.png)
+
+![ibert手推4.png (1447×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ibert手推4.png)
+
+
+
+*后面的实验就略了~*
