@@ -17,7 +17,7 @@
 - 使用平方根整数计算算法计算LayerNorm
 - 使用 INT8 乘法和 INT32 累加来处理矩阵乘法 (MatMul)
 - 具体方案
-![I-BERT](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/I-BERT1.png)
+![I-BERT](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/I-BERT1.png)
 
 ### Related Work
 #### Efficient Neural Network的几种方式
@@ -121,11 +121,11 @@ $$
 
 - 其三，是用多项式近似的方法。文中使用这种方法。过程如下
 
-  ![ibert推导1.png (652×346) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导1.png)
+  ![ibert推导1.png (652×346) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert推导1.png)
 
   演示使用整型计算二次多项式$a(x + b)^2 + c$。
 
-  ![ibert手推1.png (1349×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推1.png)
+  ![ibert手推1.png (1349×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert手推1.png)
 
 #### 非线性函数多项式近似方法
 
@@ -189,11 +189,11 @@ $$
   $$
   i-GELU(x):=x⋅ \frac{1}{2}[1+L(\frac{x}{\sqrt{2}})]
   $$
-  ![ibert推导2.png (658×505) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导2.png)
+  ![ibert推导2.png (658×505) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert推导2.png)
 
 *S/根号二怎么不加取整？*
 
-![ibert手推2.png (1000×1124) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推2.png)
+![ibert手推2.png (1000×1124) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert手推2.png)
 
 #### Softmax
 
@@ -201,7 +201,7 @@ Softmax 函数规范化一个输入向量，然后转换成一个概率分布：
 $$
 Softmax (x)_i := \frac{exp(x_i)}{\sum^k_{j=1}\exp(x_j)}, x=[x_1,...,x_k]
 $$
-![softmax.jpg (994×785) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/softmax.jpg)
+![softmax.jpg (994×785) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/softmax.jpg)
 
 先前的研究要么浮点运算来处理这一层，要么查表法，要么使用的多项式阶数很高，而且只适用于有限的定义域。
 
@@ -227,9 +227,9 @@ i-exp(\tilde{x}) := L(p)>>z
 $$
 *So easy啊，朴实无华*
 
-![ibert推导3.png (512×438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导3.png)
+![ibert推导3.png (512×438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert推导3.png)
 
-![ibert手推3.png (1308×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推3.png)
+![ibert手推3.png (1308×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert手推3.png)
 
 #### LayerNorm
 
@@ -243,7 +243,7 @@ LN就是在每个样本上统计所有维度的值，计算均值和方差（指
 
 所以BN在每个维度上分布是稳定的，LN是每个样本的分布是稳定的。
 
-![BNvsLN.png (850×508) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/BNvsLN.png)
+![BNvsLN.png (850×508) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/BNvsLN.png)
 
 LayerNorm:
 $$
@@ -257,9 +257,9 @@ $$
 
 LayerNorm 中的其他非线性运算，如除法和平方运算，则直接用整数算法计算。
 
-![ibert推导4.png (528×290) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert推导4.png)
+![ibert推导4.png (528×290) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert推导4.png)
 
-![ibert手推4.png (1447×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient%20Neural%20Network/img/ibert手推4.png)
+![ibert手推4.png (1447×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/I-BERT/img/ibert手推4.png)
 
 
 

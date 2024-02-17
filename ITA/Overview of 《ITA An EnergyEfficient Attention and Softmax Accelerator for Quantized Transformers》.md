@@ -77,11 +77,11 @@ Transformer面临的一个特殊挑战是对注意力矩阵的行进行softmax �
 
 **ARCHITECTURE**
 
-![ITA2.png (1750×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ITA2.png)
+![ITA2.png (1750×1000) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/ITA/img/ITA2.png)
 
 
 
-![ITA3.png (643×114) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ITA3.png)
+![ITA3.png (643×114) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/ITA/img/ITA3.png)
 
 
 
@@ -113,7 +113,7 @@ Transformer面临的一个特殊挑战是对注意力矩阵的行进行softmax �
 
 作者观察到当缩放因子超过一定值时，除了输入的最大值外，所有输入的 softmax 都会量化为零。这就意味着，输入的范围可以截取到最终 softmax 大于 0 的输入，而缩放因子可以在训练时进行相应的调整。（前面的部分全部变为0）
 
-![ITA1.png (621×228) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ITA1.png)
+![ITA1.png (621×228) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/ITA/img/ITA1.png)
 
 可以将系数$log_2e$隐藏在缩放因子$\epsilon$中，并将基数改为 2，以简化硬件。直接把划到$\epsilon$里面去了，真的大丈夫？就这么简单？
 $$
@@ -127,7 +127,7 @@ $$
 
 所以Softmax的计算就变成了这样：
 
-![ITA4.png (518×235) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Efficient Neural Network/img/ITA4.png)
+![ITA4.png (518×235) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/ITA/img/ITA4.png)
 
 **实验部分**
 
