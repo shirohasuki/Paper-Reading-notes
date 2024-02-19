@@ -15,7 +15,7 @@ Sehoon Kim佬的又一篇大作，膜~
 
 #### 对称量化symmetric quantization & 非对称量化asymmetric quantization
 
-![量化综述1.png](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization%20Survey/img/%E9%87%8F%E5%8C%96%E7%BB%BC%E8%BF%B02.png)
+![量化综述2.png](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization%20Survey/img/%E9%87%8F%E5%8C%96%E7%BB%BC%E8%BF%B02.png)
 
 
 
@@ -46,7 +46,8 @@ Channelwise Quantization：给每个通道分配一个缩放因子
 
 Sub-channelwise Quantization：？
 
-![image-20240217221321564](E:\一些书和资料\notes\paper notes\Paper-Reading-notes\Quantization Survey\img\量化综述3)
+
+![量化综述3.png](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization%20Survey/img/%E9%87%8F%E5%8C%96%E7%BB%BC%E8%BF%B03.png)
 
 **Channelwise Quantization是目前用于量化卷积核的标准方法**
 
