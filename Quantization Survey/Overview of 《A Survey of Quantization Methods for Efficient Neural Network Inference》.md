@@ -7,7 +7,7 @@ Sehoon Kim佬的又一篇大作，膜~
 
 #### 均匀量化uniform quantization & 非均匀量化non-uniform quantization
 
-![量化综述1.png (464×382) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization Survey/img/量化综述1.png)
+![量化综述1.png](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization%20Survey/img/%E9%87%8F%E5%8C%96%E7%BB%BC%E8%BF%B01.png)
 
 非均匀量化使我们能够通过非均匀地分配比特和离散化参数范围来更好地捕获信号信息，但通常难以在通用计算硬件（例如 GPU 和 CPU）上有效部署。
 
@@ -15,7 +15,7 @@ Sehoon Kim佬的又一篇大作，膜~
 
 #### 对称量化symmetric quantization & 非对称量化asymmetric quantization
 
-![量化综述2.png (891×288) (raw.githubusercontent.com)](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization Survey/img/量化综述2.png)
+![量化综述1.png](https://raw.githubusercontent.com/shirohasuki/Paper-Reading-notes/main/Quantization%20Survey/img/%E9%87%8F%E5%8C%96%E7%BB%BC%E8%BF%B02.png)
 
 
 
